@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# may not be running or non-existent; just a courtesy
+_status=$(service selenium-node stop)
+
+_status=$(service xvfb stop)
+

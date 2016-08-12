@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Preinst - google-chrome-stable ppa is not part of the Ubuntu universe but
+# this package depends on it. If not found, prompt to add the ppa.
+
+_pkg=$(dpkg -l | grep google-chrome-stable | awk '{print $2}')
+_pkg_name='google-chrome-stable'
+_src_list='/etc/apt/sources.list.d/google.list'
+_src_entry='deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'
+_signing_cmd='wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
+
+if [ -z $_pkg ];
+then
+    echo "The package '$_pkg_name' was not found."
+    echo -n "Would you like to install '$_pkg_name' ppa source list and keys? [Y|n]:"
+    read -n 1 add
+    echo
+    if [ "$add" == 'Y' ]; then
+        echo "Creating '$_src_list'...";
+        echo $_src_entry >> $_src_list;
+        echo "Adding the signing key...";
+        eval $_signing_cmd;
+	echo "You must install the package and dependencies; 'apt-get update && \
+apt-get install -y $_pkg_name' (may also need 'apt-get -f install' for unmet \
+dependencies)"
+    fi
+fi
