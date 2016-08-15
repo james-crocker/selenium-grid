@@ -1,5 +1,10 @@
 ubuntu/tmpsrc/
-ubuntu/version
-ubuntu/*.deb
-ubuntu/selenium-grid/DEBIAN/control
-ubuntu/selenium-grid/usr/
+ubuntu/selenium-hub/version
+ubuntu/selenium-hub/selenium-hub/DEBIAN/control
+ubuntu/selenium-hub/selenium-hub/usr/
+ubuntu/selenium-node/version
+ubuntu/selenium-node/selenium-node/DEBIAN/control
+ubuntu/selenium-node/selenium-node/usr/
+ubuntu/selenium-node-headless/version
+ubuntu/selenium-node-headless/selenium-node-headless/DEBIAN/control
+ubuntu/selenium-node-headless/selenium-node-headless/usr/

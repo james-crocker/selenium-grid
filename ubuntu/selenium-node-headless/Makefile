@@ -6,7 +6,7 @@ RM = /bin/rm
 SHELL = /bin/bash
 SHOWSHELL = $(shell echo $$0)
 REPO = $(shell echo $${REPO:-/data/repo})
-OFFICIAL_VERSION_FILE = /var/lib/jenkins/jobs/$(JOB)/workspace/ubuntu/version
+OFFICIAL_VERSION_FILE = /var/lib/jenkins/jobs/$(JOB)/workspace/ubuntu/selenium-node-headless/version
 OFFICIAL_VERSION = $(shell cat $(OFFICIAL_VERSION_FILE))
 
 # Selenium/Google Chrome Driver paths
