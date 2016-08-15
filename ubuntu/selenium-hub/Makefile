@@ -1,12 +1,11 @@
 # This Makefile builds and signs the debian package for selenium-hub and updates the apt repo
 TARGET = selenium-hub
-JOB = selenium-hub
 DISTRO = everest
 RM = /bin/rm
 SHELL = /bin/bash
 SHOWSHELL = $(shell echo $$0)
 REPO = $(shell echo $${REPO:-/data/repo})
-OFFICIAL_VERSION_FILE = /var/lib/jenkins/jobs/$(JOB)/workspace/ubuntu/selenium-hub/version
+OFFICIAL_VERSION_FILE = "/var/lib/jenkins/jobs/$(JOB_NAME)/workspace/ubuntu/$(TARGET)/version"
 OFFICIAL_VERSION = $(shell cat $(OFFICIAL_VERSION_FILE))
 
 # Selenium server paths

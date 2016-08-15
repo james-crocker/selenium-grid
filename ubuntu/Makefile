@@ -1,5 +1,7 @@
 # This Makefile builds the builds
 
+export JOB_NAME='Selenium-Grid Packaging'
+
 # Source not in Git; fetch for unpacking
 # $SRC_SSH_USER must be set!
 SRC_HOST=hancock.sc.steeleye.com
