@@ -8,5 +8,4 @@ Priority: optional
 Version: %VERSION%
 Description: Selenium Grid - NODE
 	Installs the Selenium server with -role webdriver
-        Will install the Selenium Google WebDriver. Will prompt for
-	installation of google-chrome-stable if package not found.
+        Will install the Selenium Google WebDriver.
