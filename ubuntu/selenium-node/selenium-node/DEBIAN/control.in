@@ -2,7 +2,7 @@ Package: selenium-node
 Section: sios
 Architecture: amd64
 Maintainer: SIOS Technology Corp.
-Depends: google-chrome-stable, firefox, openjdk-7-jre
+Depends: google-chrome-stable, firefox, openjdk-8-jre
 Conflicts: selenium-node-headless
 Priority: optional
 Version: %VERSION%
