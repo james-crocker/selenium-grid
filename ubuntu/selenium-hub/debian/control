@@ -1,0 +1,13 @@
+Source: selenium-hub
+Maintainer: SIOS Technology Corp. <nextgen-eng@us.sios.com>
+Section: sios
+Priority: optional
+Build-Depends: debhelper (>= 9), dh-systemd
+
+Package: selenium-hub
+Architecture: amd64
+Section: sios
+Priority: optional
+Depends: openjdk-8-jre-headless, ${misc:Depends}
+Description: Selenium Grid - HUB
+ Installs the Selenium server with -role hub

@@ -1,9 +1,0 @@
-Package: selenium-hub
-Section: sios
-Architecture: amd64
-Maintainer: SIOS Technology Corp.
-Depends: openjdk-7-jre-headless
-Priority: optional
-Version: %VERSION%
-Description: Selenium Grid - HUB
-	Installs the Selenium server with -role hub

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# may not be running or non-existent; just a courtesy
-_status=$(service selenium-hub stop)
-

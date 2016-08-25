@@ -1,8 +1,0 @@
-#!/bin/bash
-
-service selenium-node start
-
-echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-echo "Update /etc/init/selenium-node.conf to reference correct Selenium Grid HUB"
-echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-

@@ -1,0 +1,10 @@
+[Unit]
+Description="Selenium NODE server"
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/java -jar /usr/sbin/selenium-server-node.jar -role hub
+
+[Install]
+WantedBy=multi-user.target

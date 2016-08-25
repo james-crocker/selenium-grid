@@ -1,0 +1,12 @@
+Source: selenium-xvfb
+Maintainer: SIOS Technology Corp. <nextgen-eng@us.sios.com>
+Section: sios
+Priority: optional
+Build-Depends: debhelper (>= 9), dh-systemd
+
+Package: selenium-xvfb
+Architecture: amd64
+Section: sios
+Priority: optional
+Depends: xvfb, ${misc:Depends}
+Description: Systemd xvfb.service 
