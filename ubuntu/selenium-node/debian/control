@@ -1,0 +1,15 @@
+Source: selenium-node
+Maintainer: SIOS Technology Corp. <nextgen-eng@us.sios.com>
+Section: sios
+Priority: optional
+Build-Depends: debhelper (>= 9), dh-systemd
+
+Package: selenium-node
+Architecture: amd64
+Section: sios
+Priority: optional
+Depends: ubuntu-desktop, google-chrome-stable (>= 52.0), firefox (>= 48.0), openjdk-8-jre, ${misc:Depends}
+Conflicts: selenium-node-headless
+Description: Selenium Grid - NODE
+ Installs the Selenium server with -role node
+ Will install the Selenium Google WebDriver and Gecko WebDriver.

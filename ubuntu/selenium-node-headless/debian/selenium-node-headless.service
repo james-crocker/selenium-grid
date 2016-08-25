@@ -1,0 +1,10 @@
+[Unit]
+Description="Selenium NODE server"
+After=network.target selenium-xvfb.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/java -Dwebdriver.chrome.driver=/usr/bin/chromedriver -Dwebdriver.gecko.driver=/usr/bin/geckodriver -jar /usr/sbin/selenium-server-node.jar -role webdriver -browser browserName=chrome,maxInstances=2,platform=LINUX -browser browserName=firefox,maxInstances=2,platform=LINUX -hub http://fvorge.sc.steeleye.com:4444/grid/register
+
+[Install]
+WantedBy=multi-user.target
