@@ -3,7 +3,7 @@
   [
     {
       "browserName": "chrome",
-      "version": "52",
+      "version": "52.0",
       "maxInstances": 1,
       "platform": "WIN8_1",
       "webdriver.chrome.driver": "C:\\selenium\\chromedriver.exe",
@@ -12,14 +12,14 @@
     {
       "browserName": "firefox",
       "maxInstances": 1,
-      "version": "48",
+      "version": "48.0",
       "platform": "WIN8_1",
       "webdriver.gecko.driver": "C:\\selenium\\geckodriver.exe",
       "seleniumProtocol": "WebDriver"
     },
     {
       "browserName": "internet explorer",
-      "version": "11",
+      "version": "11.0",
       "maxInstances": 1,
       "platform": "WIN8_1",
       "webdriver.ie.driver": "C:\\selenium\\IEDriverServer.exe",
