@@ -1,3 +1,4 @@
 ../tmpsrc/selenium-server-node.jar usr/sbin
 ../tmpsrc/chromedriver usr/bin
 ../tmpsrc/geckodriver usr/bin
+../selenium-nodeConfig.json etc/default

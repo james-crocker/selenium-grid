@@ -1,0 +1,27 @@
+{
+"capabilities":
+  [
+    {
+      "browserName": "chrome",
+      "version": "52",
+      "maxInstances": 1,
+      "platform": "LINUX",
+      "webdriver.chrome.driver": "/usr/bin/chromedriver",
+      "seleniumProtocol": "WebDriver"
+    },
+    {
+      "browserName": "firefox",
+      "maxInstances": 1,
+      "version": "48",
+      "platform": "LINUX",
+      "webdriver.gecko.driver": "/usr/bin/geckodriver",
+      "seleniumProtocol": "WebDriver"
+    }
+  ],
+"configuration":
+    {
+      "hubPort": 4444,
+      "hubHost":"fvorge.sc.steeleye.com",
+      "maxSession": 2
+    }
+}

@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/java -jar /usr/sbin/selenium-server-node.jar -role hub
+ExecStart=/usr/bin/java -jar /usr/sbin/selenium-server-node.jar -role node -nodeConfig /etc/default/selenium-nodeConfig.json
 
 [Install]
 WantedBy=multi-user.target
