@@ -4,14 +4,14 @@
     {
       "browserName": "chrome",
       "version": "52.0",
-      "maxInstances": 1,
+      "maxInstances": 2,
       "platform": "LINUX",
       "webdriver.chrome.driver": "/usr/bin/chromedriver",
       "seleniumProtocol": "WebDriver"
     },
     {
       "browserName": "firefox",
-      "maxInstances": 1,
+      "maxInstances": 2,
       "version": "48.0",
       "platform": "LINUX",
       "webdriver.gecko.driver": "/usr/bin/geckodriver",
