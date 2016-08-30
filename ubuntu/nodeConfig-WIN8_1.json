@@ -1,0 +1,35 @@
+{
+"capabilities":
+  [
+    {
+      "browserName": "chrome",
+      "version": "52.0",
+      "maxInstances": 2,
+      "platform": "WIN8_1",
+      "webdriver.chrome.driver": "C:\\selenium\\chromedriver.exe",
+      "seleniumProtocol": "WebDriver"
+    },
+    {
+      "browserName": "firefox",
+      "maxInstances": 2,
+      "version": "48.0",
+      "platform": "WIN8_1",
+      "webdriver.gecko.driver": "C:\\selenium\\geckodriver.exe",
+      "seleniumProtocol": "WebDriver"
+    },
+    {
+      "browserName": "internet explorer",
+      "version": "11.0",
+      "maxInstances": 2,
+      "platform": "WIN8_1",
+      "webdriver.ie.driver": "C:\\selenium\\IEDriverServer.exe",
+      "seleniumProtocol": "WebDriver"
+    }
+  ],
+"configuration":
+    {
+      "hubPort": 4444,
+      "hubHost":"fvorge.sc.steeleye.com",
+      "maxSession": 2
+    }
+}
