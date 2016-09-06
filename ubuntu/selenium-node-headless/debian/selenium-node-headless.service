@@ -4,7 +4,7 @@ After=network.target selenium-xvfb.service
 
 [Service]
 Type=simple
-Environmnet="DISPLAY=:99"
+Environment="DISPLAY=:99"
 ExecStart=/usr/bin/java -jar /usr/sbin/selenium-server-node.jar -role node -nodeConfig /etc/default/selenium-nodeConfig.json
 
 [Install]

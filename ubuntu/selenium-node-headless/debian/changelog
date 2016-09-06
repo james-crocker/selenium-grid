@@ -1,3 +1,15 @@
+selenium-node-headless (1.0.1ubuntu5) stable; urgency=low
+
+  * supporting beta3
+
+ -- SIOS Technology Corp. <nextgen-eng@us.sios.com>  Tue, 06 Sep 2016 12:29:21 -0400
+
+selenium-node-headless (1.0.1ubuntu4) stable; urgency=low
+
+  * fix service environment spelling
+
+ -- SIOS Technology Corp. <nextgen-eng@us.sios.com>  Tue, 30 Aug 2016 16:38:59 -0400
+
 selenium-node-headless (1.0.1ubuntu3) stable; urgency=low
 
   * Adding mathing DISPLAY environment var from selenium-xvfb so
