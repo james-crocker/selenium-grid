@@ -1,3 +1,9 @@
+selenium-node (1.0.1ubuntu3) stable; urgency=low
+
+  * supporting beta3
+
+ -- SIOS Technology Corp. <nextgen-eng@us.sios.com>  Tue, 06 Sep 2016 12:29:12 -0400
+
 selenium-node (1.0.1ubuntu2) stable; urgency=low
 
   * Updating geckodriver to 0.10.0 for Selenium 3 support; using JSON

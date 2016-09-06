@@ -3,7 +3,7 @@ Description="Selenium HUB server"
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/java -jar /usr/sbin/selenium-server-hub.jar -role hub
+ExecStart=/usr/bin/java -jar /usr/sbin/selenium-server-hub.jar -role hub -hubConfig /etc/default/selenium-hubConfig.json
 
 [Install]
 WantedBy=multi-user.target

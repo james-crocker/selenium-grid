@@ -1,3 +1,9 @@
+selenium-hub (1.0.1ubuntu2) stable; urgency=low
+
+  * supporting beta3
+
+ -- SIOS Technology Corp. <nextgen-eng@us.sios.com>  Tue, 06 Sep 2016 12:29:06 -0400
+
 selenium-hub (1.0.1ubuntu1) stable; urgency=low
 
   * Selenium3 Beta

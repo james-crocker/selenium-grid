@@ -1,1 +1,2 @@
 ../tmpsrc/selenium-server-hub.jar usr/sbin
+../selenium-hubConfig.json etc/default
