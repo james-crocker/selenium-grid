@@ -13,9 +13,9 @@ SRC_PATH_COMMON=$(SRC_PATH_ROOT)/common
 SRC_TMP_DIR=tmpsrc
 RM = /bin/rm
 
-export SELENIUM_SERVER_SRC=selenium-server-standalone-3.0.0-beta3.jar
-export DRIVER_CHROME_SRC=chromedriver_2.23_linux64.zip
-export DRIVER_GECKO_SRC=geckodriver-v0.10.0-linux64.tar.gz
+export SELENIUM_SERVER_SRC=selenium-server-standalone-3.0.1.jar
+export DRIVER_CHROME_SRC=chromedriver_2.24_linux64.zip
+export DRIVER_GECKO_SRC=geckodriver-v0.11.1-linux64.tar.gz
 export SELENIUM_SERVER_HUB=selenium-server-hub.jar
 export SELENIUM_SERVER_NODE=selenium-server-node.jar
 export CHROMEDRIVER=chromedriver
