@@ -1,3 +1,9 @@
+selenium-node-headless (1.0.1ubuntu6) stable; urgency=low
+
+  * Support for Selenium 3.0.1
+
+ -- SIOS Technology Corp. <nextgen-eng@us.sios.com>  Mon, 24 Oct 2016 10:10:03 -0400
+
 selenium-node-headless (1.0.1ubuntu5) stable; urgency=low
 
   * supporting beta3
