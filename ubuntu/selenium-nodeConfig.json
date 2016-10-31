@@ -18,10 +18,7 @@
       "seleniumProtocol": "WebDriver"
     }
   ],
-"configuration":
-    {
-      "hubPort": 4444,
-      "hubHost":"fvorge.sc.steeleye.com",
-      "maxSession": 1
-    }
+  "hub":"http://fvorge.sc.steeleye.com:4444",
+  "register": true,
+  "maxSession": 2
 }

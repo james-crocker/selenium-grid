@@ -1,3 +1,9 @@
+selenium-node (1.0.1ubuntu5) stable; urgency=low
+
+  * update nodeConfig JSON format for 3.0.1
+
+ -- SIOS Technology Corp. <nextgen-eng@us.sios.com>  Mon, 31 Oct 2016 13:14:41 -0400
+
 selenium-node (1.0.1ubuntu4) stable; urgency=low
 
   * Support for Selenium 3.0.1
