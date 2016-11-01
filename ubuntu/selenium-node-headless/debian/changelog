@@ -1,3 +1,9 @@
+selenium-node-headless (1.0.1ubuntu8) stable; urgency=low
+
+  * Updating Chrome web driver to 2.25
+
+ -- SIOS Technology Corp. <nextgen-eng@us.sios.com>  Tue, 01 Nov 2016 13:23:43 -0400
+
 selenium-node-headless (1.0.1ubuntu7) stable; urgency=low
 
   * update nodeConfig JSON format for 3.0.1

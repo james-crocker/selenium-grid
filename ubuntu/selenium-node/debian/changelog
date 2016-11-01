@@ -1,3 +1,9 @@
+selenium-node (1.0.1ubuntu6) stable; urgency=low
+
+  * Updating Chrome web driver to 2.25
+
+ -- SIOS Technology Corp. <nextgen-eng@us.sios.com>  Tue, 01 Nov 2016 13:23:36 -0400
+
 selenium-node (1.0.1ubuntu5) stable; urgency=low
 
   * update nodeConfig JSON format for 3.0.1
