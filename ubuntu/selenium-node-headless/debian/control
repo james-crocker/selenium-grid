@@ -1,16 +1,20 @@
 Source: selenium-node-headless
-Maintainer: SIOS Technology Corp. <nextgen-eng@us.sios.com>
-Section: sios
+Maintainer: SIOS Technology Corp. <support@us.sios.com>
+Section: java
 Priority: optional
-Build-Depends: debhelper (>= 9), dh-systemd
+Build-Depends: libx11-6, libnss3, libnspr4, libgconf-2-4, libfontconfig1, libfreetype6, debhelper (>= 9), javahelper (>=0.54), dh-systemd
+Standards-Version: 3.9.7
+Homepage: https://github.com/siostechcorp/selenium-grid
+Vcs-Git: https://github.com/siostechcorp/selenium-grid.git
+Vcs-Browser: https://github.com/siostechcorp/selenium-grid
 
 Package: selenium-node-headless
 Architecture: amd64
-Section: sios
+Section: java
 Priority: optional
-Depends: google-chrome-stable (>= 52.0), firefox (>= 48.0), xvfb, selenium-xvfb, openjdk-8-jre-headless, ${misc:Depends}
+Depends: google-chrome-stable (>= 52.0), firefox (>= 48.0), xvfb, selenium-xvfb, openjdk-8-jre-headless, ${java:Depends}, ${misc:Depends}
 Conflicts: selenium-node
-Description: Selenium Grid - NODE
+Description: Selenium GRID - Node - Headless
  Installs the Selenium server with -role node
- Will install the Selenium Google WebDriver and Gecko WebDriver. Using
+ Will install the Google WebDriver and Gecko WebDriver. Using
  the Xvfb framebuffer for headless.

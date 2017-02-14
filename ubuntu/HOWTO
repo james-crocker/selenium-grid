@@ -2,4 +2,5 @@ Suggest installing 'devscripts' which includes 'dch'. This tool
 provides a nice way to auto-increment the debian/changelog version.
 The version used to build the packages.
 
-dch -i -M -D stable -u low "the comments for the change"
+dch -i -M -D xenial -u low "the comments for the change"
+

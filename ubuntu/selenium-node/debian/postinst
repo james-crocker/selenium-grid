@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo '####################################################################'
+echo '| !! Update /etc/default/selenium-nodeConfig.json  !!              |'
+echo '####################################################################'
+echo '| Be sure to update the node config json 'hub' to reference the    |'
+echo '| active Selenium HUB host.                                        |' 
+echo '| Default: "hub":"http://localhost:4444"                           |'
+echo '####################################################################'
