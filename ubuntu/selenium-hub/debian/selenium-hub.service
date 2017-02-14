@@ -1,9 +1,9 @@
 [Unit]
-Description="Selenium HUB server"
+Description="Selenium GRID - Hub"
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/java -jar /usr/sbin/selenium-server-hub.jar -role hub -hubConfig /etc/default/selenium-hubConfig.json
+ExecStart=/usr/bin/java -jar /usr/share/java/selenium-hub.jar -role hub -hubConfig /etc/default/selenium-hubConfig.json
 
 [Install]
 WantedBy=multi-user.target

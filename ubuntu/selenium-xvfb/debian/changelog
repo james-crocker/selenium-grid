@@ -1,5 +1,11 @@
-selenium-xvfb (1.0.1ubuntu1) stable; urgency=low
+selenium-xvfb (1.0.1-0ubuntu1) xenial; urgency=low
 
-  * Systemd selenium-xvfb.service
+  * Launchpad PPA
 
- -- SIOS Technology Corp. <nextgen-eng@us.sios.com>  Thu, 25 Aug 2016 13:18:16 -0400
+ -- SIOS Technology Corp. <support@us.sios.com>  Mon, 13 Feb 2017 15:21:37 -0500
+
+selenium-xvfb (1.0.0+1SNAPSHOT201702131414-0ubuntu1) xenial; urgency=low
+
+  * Xvfb for supportin Selenium GRID
+
+ -- SIOS Technology Corp. <support@us.sios.com>  Mon, 14 Nov 2016 10:43:38 -0500

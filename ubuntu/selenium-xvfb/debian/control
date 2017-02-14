@@ -1,12 +1,16 @@
 Source: selenium-xvfb
-Maintainer: SIOS Technology Corp. <nextgen-eng@us.sios.com>
-Section: sios
+Maintainer: SIOS Technology Corp. <support@us.sios.com>
+Section: x11
 Priority: optional
 Build-Depends: debhelper (>= 9), dh-systemd
+Standards-Version: 3.9.7
+Homepage: https://github.com/siostechcorp/selenium-grid
+Vcs-Git: https://github.com/siostechcorp/selenium-grid.git
+Vcs-Browser: https://github.com/siostechcorp/selenium-grid
 
 Package: selenium-xvfb
 Architecture: amd64
-Section: sios
+Section: x11
 Priority: optional
 Depends: xvfb, ${misc:Depends}
-Description: Systemd xvfb.service 
+Description: Selenium GRID - (Xvfb) Virtual Frame Buffer X Server

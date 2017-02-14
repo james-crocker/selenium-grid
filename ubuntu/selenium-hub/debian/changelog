@@ -1,17 +1,11 @@
-selenium-hub (1.0.1ubuntu3) stable; urgency=low
+selenium-hub (1.0.1-0ubuntu1) xenial; urgency=low
 
-  * Support for Selenium 3.0.1
+  * Launchpad PPA build
 
- -- SIOS Technology Corp. <nextgen-eng@us.sios.com>  Mon, 24 Oct 2016 10:09:50 -0400
+ -- SIOS Technology Corp. <support@us.sios.com>  Mon, 13 Feb 2017 15:18:33 -0500
 
-selenium-hub (1.0.1ubuntu2) stable; urgency=low
+selenium-hub (1.0.0+1SNAPSHOT201702131414-0ubuntu1) xenial; urgency=low
 
-  * supporting beta3
+  * Selenium 3.0.1 HUB
 
- -- SIOS Technology Corp. <nextgen-eng@us.sios.com>  Tue, 06 Sep 2016 12:29:06 -0400
-
-selenium-hub (1.0.1ubuntu1) stable; urgency=low
-
-  * Selenium3 Beta
-
- -- SIOS Technology Corp. <nextgen-eng@us.sios.com>  Thu, 25 Aug 2016 13:18:16 -0400
+ -- SIOS Technology Corp. <support@us.sios.com>  Mon, 14 Nov 2016 10:41:32 -0500

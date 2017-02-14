@@ -1,9 +1,21 @@
 #!/usr/bin/make -f
 
+export DH_OPTIONS=-v
+
 # see EXAMPLES in dpkg-buildflags(1) and read /usr/share/dpkg/*
 DPKG_EXPORT_BUILDFLAGS = 1
 include /usr/share/dpkg/default.mk
 
 %:
-	dh $@ --with=systemd
+	dh $@ --with=systemd,javahelper
+
+override_dh_installinit:
+	# don't do anything, silences lintian warnings
+
+override_dh_auto_install:
+	printenv
+
+override_jh_depends:
+	# don't do anything; taking care of symlinks with
+	# dh_link
 

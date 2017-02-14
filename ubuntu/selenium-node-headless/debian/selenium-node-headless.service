@@ -1,11 +1,11 @@
 [Unit]
-Description="Selenium NODE server"
+Description="Selenium GRID - Node - Headless"
 After=network.target selenium-xvfb.service
 
 [Service]
 Type=simple
 Environment="DISPLAY=:99"
-ExecStart=/usr/bin/java -jar /usr/sbin/selenium-server-node.jar -role node -nodeConfig /etc/default/selenium-nodeConfig.json
+ExecStart=/usr/bin/java -jar /usr/share/java/selenium-node.jar -role node -nodeConfig /etc/default/selenium-nodeConfig.json
 
 [Install]
 WantedBy=multi-user.target

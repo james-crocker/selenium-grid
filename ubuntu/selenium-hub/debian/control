@@ -1,13 +1,17 @@
 Source: selenium-hub
-Maintainer: SIOS Technology Corp. <nextgen-eng@us.sios.com>
-Section: sios
+Maintainer: SIOS Technology Corp. <support@us.sios.com>
+Section: java
 Priority: optional
-Build-Depends: debhelper (>= 9), dh-systemd
+Build-Depends: debhelper (>= 9), javahelper (>=0.54), dh-systemd
+Standards-Version: 3.9.7
+Homepage: https://github.com/siostechcorp/selenium-grid
+Vcs-Git: https://github.com/siostechcorp/selenium-grid.git
+Vcs-Browser: https://github.com/siostechcorp/selenium-grid
 
 Package: selenium-hub
 Architecture: amd64
-Section: sios
+Section: java
 Priority: optional
-Depends: openjdk-8-jre-headless, ${misc:Depends}
-Description: Selenium Grid - HUB
+Depends: openjdk-8-jre-headless, ${java:Depends}, ${misc:Depends}
+Description: Selenium GRID - Hub
  Installs the Selenium server with -role hub
