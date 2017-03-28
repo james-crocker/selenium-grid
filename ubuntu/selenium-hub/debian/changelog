@@ -1,3 +1,9 @@
+selenium-hub (1.0.2-0ubuntu1) xenial; urgency=low
+
+  * Updates to Selenium 3.3.1, ChromeDrvier 2.28 and GeckoDriver 0.15
+
+ -- SIOS Technology Corp. <support@us.sios.com>  Tue, 28 Mar 2017 09:45:19 -0400
+
 selenium-hub (1.0.1-0ubuntu1) xenial; urgency=low
 
   * Launchpad PPA build

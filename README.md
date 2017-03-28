@@ -1,9 +1,9 @@
 # selenium-grid
 Tooling for Selenium Grid - Ubuntu Debian packaging
 
-Selenium 3.0.1
-Chromedriver 2.27
-Geckodriver 0.14.0
+Selenium 3.3.1
+Chromedriver 2.28
+Geckodriver 0.15.0
 
 Build Debian pacakges with ubuntu/Makefile
 - make allclean local
