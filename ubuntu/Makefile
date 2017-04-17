@@ -11,14 +11,14 @@ RM = /bin/rm
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # debuild doesn't use the full change log version which would read
 # 1.0.0+1SNAPSHOT201702091400-1ubuntu0
-export LP_HUB_VER=1.0.2
-export LP_NODE_VER=1.0.2
-export LP_NODE_HEADLESS_VER=1.0.2
-export LP_XVFB_VER=1.0.2
+export LP_HUB_VER=1.0.3
+export LP_NODE_VER=1.0.3
+export LP_NODE_HEADLESS_VER=1.0.3
+export LP_XVFB_VER=1.0.3
 export LP_UBUNTU_VER=-0ubuntu1
 
 export SELENIUM_SERVER_VER=3.3.1
-export CHROMEDRIVER_VER=2.28
+export CHROMEDRIVER_VER=2.29
 export GECKODRIVER_VER=0.15.0
 export CHROMEDRIVER_NAME=chromedriver
 export GECKODRIVER_NAME=geckodriver
