@@ -1,3 +1,9 @@
+selenium-node (1.0.3-0ubuntu1) xenial; urgency=low
+
+  * Update for ChromeDriver 2.29
+
+ -- SIOS Technology Corp. <support@us.sios.com>  Mon, 17 Apr 2017 09:16:06 -0400
+
 selenium-node (1.0.2-0ubuntu1) xenial; urgency=low
 
   * Updates to Selenium 3.3.1, ChromeDrvier 2.28 and GeckoDriver 0.15
