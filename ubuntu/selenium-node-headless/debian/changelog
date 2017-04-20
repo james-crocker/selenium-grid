@@ -1,3 +1,9 @@
+selenium-node-headless (1.0.4-0ubuntu1) xenial; urgency=low
+
+  * Update for Google Chrome version 58
+
+ -- SIOS Technology Corp. <support@us.sios.com>  Thu, 20 Apr 2017 10:57:40 -0400
+
 selenium-node-headless (1.0.3-0ubuntu1) xenial; urgency=low
 
   * Update for ChromeDriver 2.29
