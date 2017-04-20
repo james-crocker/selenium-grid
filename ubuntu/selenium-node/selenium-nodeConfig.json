@@ -3,7 +3,7 @@
   [
     {
       "browserName": "chrome",
-      "version": "57.0",
+      "version": "58.0",
       "maxInstances": 1,
       "platform": "LINUX",
       "webdriver.chrome.driver": "/usr/bin/chromedriver",
