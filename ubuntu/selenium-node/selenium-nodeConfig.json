@@ -12,7 +12,7 @@
     {
       "browserName": "firefox",
       "maxInstances": 1,
-      "version": "52.0",
+      "version": "53.0",
       "platform": "LINUX",
       "webdriver.gecko.driver": "/usr/bin/geckodriver",
       "seleniumProtocol": "WebDriver"

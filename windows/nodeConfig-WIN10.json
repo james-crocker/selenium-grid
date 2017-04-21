@@ -12,7 +12,7 @@
     {
       "browserName": "firefox",
       "maxInstances": 1,
-      "version": "52.0",
+      "version": "53.0",
       "platform": "WIN10",
       "webdriver.gecko.driver": "C:\\selenium\\geckodriver.exe",
       "seleniumProtocol": "WebDriver"

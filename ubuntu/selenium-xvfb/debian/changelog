@@ -1,3 +1,9 @@
+selenium-xvfb (1.0.5-0ubuntu1) xenial; urgency=low
+
+  * Update Selenium 3.4.0, browser versions
+
+ -- SIOS Technology Corp. <support@us.sios.com>  Fri, 21 Apr 2017 09:55:23 -0400
+
 selenium-xvfb (1.0.4-0ubuntu1) xenial; urgency=low
 
   * Update for Google Chrome version 58

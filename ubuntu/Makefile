@@ -11,19 +11,19 @@ RM = /bin/rm
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # debuild doesn't use the full change log version which would read
 # 1.0.0+1SNAPSHOT201702091400-1ubuntu0
-export LP_HUB_VER=1.0.4
-export LP_NODE_VER=1.0.4
-export LP_NODE_HEADLESS_VER=1.0.4
-export LP_XVFB_VER=1.0.4
+export LP_HUB_VER=1.0.5
+export LP_NODE_VER=1.0.5
+export LP_NODE_HEADLESS_VER=1.0.5
+export LP_XVFB_VER=1.0.5
 export LP_UBUNTU_VER=-0ubuntu1
 
-export SELENIUM_SERVER_VER=3.3.1
+export SELENIUM_SERVER_VER=3.4.0
 export CHROMEDRIVER_VER=2.29
 export GECKODRIVER_VER=0.15.0
 export CHROMEDRIVER_NAME=chromedriver
 export GECKODRIVER_NAME=geckodriver
 
-export SELENIUM_SERVER_SRC=http://selenium-release.storage.googleapis.com/3.3/selenium-server-standalone-$(SELENIUM_SERVER_VER).jar
+export SELENIUM_SERVER_SRC=http://selenium-release.storage.googleapis.com/3.4/selenium-server-standalone-$(SELENIUM_SERVER_VER).jar
 export CHROMEDRIVER_SRC=https://chromedriver.storage.googleapis.com/$(CHROMEDRIVER_VER)/chromedriver_linux64.zip
 export GECKODRIVER_SRC=https://github.com/mozilla/geckodriver/releases/download/v$(GECKODRIVER_VER)/geckodriver-v$(GECKODRIVER_VER)-linux64.tar.gz
 
