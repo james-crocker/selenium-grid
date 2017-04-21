@@ -1,7 +1,7 @@
 # selenium-grid
 Tooling for Selenium Grid - Ubuntu Debian packaging
 
-Selenium 3.3.1
+Selenium 3.4.0
 Chromedriver 2.29
 Geckodriver 0.15.0
 

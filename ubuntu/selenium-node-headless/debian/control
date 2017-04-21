@@ -12,7 +12,7 @@ Package: selenium-node-headless
 Architecture: amd64
 Section: java
 Priority: optional
-Depends: google-chrome-stable (>= 52.0), firefox (>= 48.0), xvfb, selenium-xvfb, openjdk-8-jre-headless, ${java:Depends}, ${misc:Depends}
+Depends: google-chrome-stable (>= 58.0), firefox (>= 53.0), xvfb, selenium-xvfb, openjdk-8-jre-headless, ${java:Depends}, ${misc:Depends}
 Conflicts: selenium-node
 Description: Selenium GRID - Node - Headless
  Installs the Selenium server with -role node
