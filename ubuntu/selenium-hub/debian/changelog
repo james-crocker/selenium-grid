@@ -1,3 +1,9 @@
+selenium-hub (1.0.7-0ubuntu1) xenial; urgency=low
+
+  * Update geckodriver 0.16.0
+
+ -- SIOS Technology Corp. <support@us.sios.com>  Fri, 21 Apr 2017 12:14:08 -0400
+
 selenium-hub (1.0.6-0ubuntu1) xenial; urgency=low
 
   * Update package browser dependency versions
