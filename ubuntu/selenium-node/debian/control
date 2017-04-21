@@ -12,7 +12,7 @@ Package: selenium-node
 Architecture: amd64
 Section: java
 Priority: optional
-Depends: ubuntu-desktop, google-chrome-stable (>= 52.0), firefox (>= 48.0), openjdk-8-jre, ${java:Depends}, ${misc:Depends}
+Depends: ubuntu-desktop, google-chrome-stable (>= 58.0), firefox (>= 53.0), openjdk-8-jre, ${java:Depends}, ${misc:Depends}
 Conflicts: selenium-node-headless
 Description: Selenium GRID - Node
  Installs the Selenium server with -role node
