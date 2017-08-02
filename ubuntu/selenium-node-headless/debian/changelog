@@ -1,3 +1,9 @@
+selenium-node-headless (1.0.8-0ubuntu1) xenial; urgency=low
+
+  * Update for Google ChromeDriver 2.31; GeckoDriver 0.18.0
+
+ -- SIOS Technology Corp. <support@us.sios.com>  Wed, 02 Aug 2017 08:58:45 -0400
+
 selenium-node-headless (1.0.7-0ubuntu1) xenial; urgency=low
 
   * Update geckodriver 0.16.0
