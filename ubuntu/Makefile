@@ -1,40 +1,7 @@
-# This Makefile builds the builds
+# This Makefile builds the ubuntu debs locally or in Launchpad (remote)
 
-export JOB_NAME=Selenium-Grid Packaging
+JOB_NAME=Selenium-Grid Packaging
 DISTRO = everest
-REPO = $(shell echo $${REPO:-/data/repo})
-
-RM = /bin/rm
-
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# Make sure versions match packages most recent changelog entry
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# debuild doesn't use the full change log version which would read
-# 1.0.0+1SNAPSHOT201702091400-1ubuntu0
-export LP_HUB_VER=1.0.8
-export LP_NODE_VER=1.0.8
-export LP_NODE_HEADLESS_VER=1.0.8
-export LP_XVFB_VER=1.0.8
-export LP_UBUNTU_VER=-0ubuntu1
-
-export SELENIUM_SERVER_VER=3.4.0
-export CHROMEDRIVER_VER=2.31
-export GECKODRIVER_VER=0.18.0
-export CHROMEDRIVER_NAME=chromedriver
-export GECKODRIVER_NAME=geckodriver
-
-export SELENIUM_SERVER_SRC=http://selenium-release.storage.googleapis.com/3.4/selenium-server-standalone-$(SELENIUM_SERVER_VER).jar
-export CHROMEDRIVER_SRC=https://chromedriver.storage.googleapis.com/$(CHROMEDRIVER_VER)/chromedriver_linux64.zip
-export GECKODRIVER_SRC=https://github.com/mozilla/geckodriver/releases/download/v$(GECKODRIVER_VER)/geckodriver-v$(GECKODRIVER_VER)-linux64.tar.gz
-
-export CHROMEDRIVER_ARCHIVE=$(CHROMEDRIVER_NAME)-$(CHROMEDRIVER_VER).zip
-export GECKODRIVER_ARCHIVE=$(GECKODRIVER_NAME)-$(GECKODRIVER_VER).tar.gz
-
-export JAR_SUFFIX=.jar
-export SELENIUM_SERVER_HUB_BIN=selenium-hub-$(SELENIUM_SERVER_VER)$(JAR_SUFFIX)
-export SELENIUM_SERVER_NODE_BIN=selenium-node-$(SELENIUM_SERVER_VER)$(JAR_SUFFIX)
-export CHROMEDRIVER_BIN=$(CHROMEDRIVER_NAME)-$(CHROMEDRIVER_VER)
-export GECKODRIVER_BIN=$(GECKODRIVER_NAME)-$(GECKODRIVER_VER)
 
 PKG_SEL_HUB=selenium-hub
 PKG_SEL_NODE=selenium-node
@@ -42,9 +9,9 @@ PKG_SEL_NODE_HEADLESS=selenium-node-headless
 PKG_SEL_XVFB=selenium-xvfb
 PKG_SRC=src
 
-PKG_SEL_HUB_SRC=$(PKG_SEL_HUB)/$(PKG_SRC)
-PKG_SEL_NODE_SRC=$(PKG_SEL_NODE)/$(PKG_SRC)
-PKG_SEL_NODE_HEADLESS_SRC=$(PKG_SEL_NODE_HEADLESS)/$(PKG_SRC)
+PKG_SEL_HUB_SRC=./$(PKG_SEL_HUB)/$(PKG_SRC)
+PKG_SEL_NODE_SRC=./$(PKG_SEL_NODE)/$(PKG_SRC)
+PKG_SEL_NODE_HEADLESS_SRC=./$(PKG_SEL_NODE_HEADLESS)/$(PKG_SRC)
 
 PPA_ORIG_ARCHIVE=.orig.tar.gz
 PPA_UPLOAD_LOG=.ppa.upload
@@ -73,64 +40,82 @@ DPKG=dpkg-buildpackage -us -uc -b
 # Launchpad build bin
 DEBUILD=debuild -S
 
-ALERT='!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
+.PHONY: chk clean tar-hub tar-node tar-node-headless tar-xvfb hub-deb-files \
+hub-lp-upload node-deb-files node-headless-deb-files node-headless-lp-upload \
+xvfb xvfb-lp sign repo get-hub-source get-node-source get-node-headless_source \
+hub hub-lp node node-lp node-headless node-headless-lp remote remote-upload \
+all-local local all-remote
 
-all-local: allclean local sign repo
+chk:
+	@if [ -z $(TMPDIR) ]; \
+	then \
+		echo "Must be called from parent ../Makefile"; \
+		exit 1; \
+	fi
 
-local: hub node node-headless xvfb
+clean:
+	rm -f *.deb *.changes *.build *.dsc *.xz
+	rm -rf build-area
+	rm -f *$(PPA_ORIG_ARCHIVE)
+	rm -f *$(PPA_UPLOAD_LOG)
+	rm -f $(SEL_HUB_INSTALL)
+	rm -f $(SEL_HUB_LINKS)
+	rm -f $(SEL_NODE_INSTALL)
+	rm -f $(SEL_NODE_LINKS)
+	rm -f $(SEL_NODE_HEADLESS_INSTALL)
+	rm -f $(SEL_NODE_HEADLESS_LINKS)
+	cd $(PKG_SEL_HUB) && make -f debian/rules clean
+	-rm -rf $(PKG_SEL_HUB_SRC)
+	cd $(PKG_SEL_NODE) && make -f debian/rules clean
+	-rm -rf $(PKG_SEL_NODE_SRC)
+	cd $(PKG_SEL_NODE_HEADLESS) && make -f debian/rules clean
+	-rm -rf $(PKG_SEL_NODE_HEADLESS_SRC)
+	cd $(PKG_SEL_XVFB) && make -f debian/rules clean
+	-rm -f ../$(PKG_SEL_HUB)_*.deb
+	-rm -f ../$(PKG_SEL_NODE)_*.deb
+	-rm -f ../$(PKG_SEL_NODE_HEADLESS)_*.deb
+	-rm -f ../$(PKG_SEL_XVFB)_*.deb
+		
+tar-hub:
+	tar cvfzp $(PPA_SEL_HUB)$(PPA_ORIG_ARCHIVE) $(PKG_SEL_HUB)
 
-all-launchpad: allclean launchpad launchpad-upload
+tar-node:
+	tar cvfzp $(PPA_SEL_NODE)$(PPA_ORIG_ARCHIVE) $(PKG_SEL_NODE)
 
-launchpad: hub-lp node-lp node-headless-lp xvfb-lp
+tar-node-headless:
+	tar cvfzp $(PPA_SEL_NODE_HEADLESS)$(PPA_ORIG_ARCHIVE) $(PKG_SEL_NODE_HEADLESS)
 
-launchpad-upload: hub-lp-upload node-lp-upload node-headless-lp-upload xvfb-lp-upload
-
-hub: get_hub_source hub-deb-files
-	cd $(PKG_SEL_HUB) && $(DPKG)
-
-hub-lp: get_hub_source hub-deb-files tar_hub
-	cd $(PKG_SEL_HUB) && $(DEBUILD)
-
+tar-xvfb:
+	tar cvfzp $(PPA_SEL_XVFB)$(PPA_ORIG_ARCHIVE) $(PKG_SEL_XVFB)
+	
 hub-deb-files:
-	echo src/$(SELENIUM_SERVER_HUB_BIN) usr/share/java > $(SEL_HUB_INSTALL)
+	echo src/$(SELENIUM_SERVER_HUB_JAR) usr/share/java > $(SEL_HUB_INSTALL)
 	echo selenium-hubConfig.json etc/default >> $(SEL_HUB_INSTALL)
-	echo usr/share/java/$(SELENIUM_SERVER_HUB_BIN) usr/share/java/selenium-hub.jar > $(SEL_HUB_LINKS)
+	echo usr/share/java/$(SELENIUM_SERVER_HUB_JAR) usr/share/java/selenium-hub.jar > $(SEL_HUB_LINKS)
 	cp $(SEL_HUB_LINKS) /tmp/.
 	cp $(SEL_HUB_INSTALL) /tmp/.
 
 hub-lp-upload:
 	dput $(PPA_TARGET) $(PPA_SEL_HUB)$(LP_UBUNTU_VER)$(PPA_SOURCE_CHANGES)
 
-node: get_node_source node-deb-files
-	cd $(PKG_SEL_NODE) && $(DPKG)
-
-node-lp: get_node_source node-deb-files tar_node
-	cd $(PKG_SEL_NODE) && $(DEBUILD)
-
 node-deb-files:
-	echo src/$(SELENIUM_SERVER_NODE_BIN) usr/share/java > $(SEL_NODE_INSTALL)
+	echo src/$(SELENIUM_SERVER_NODE_JAR) usr/share/java > $(SEL_NODE_INSTALL)
 	echo src/$(CHROMEDRIVER_BIN) usr/bin >> $(SEL_NODE_INSTALL)
 	echo src/$(GECKODRIVER_BIN) usr/bin >> $(SEL_NODE_INSTALL)
 	echo selenium-nodeConfig.json etc/default >> $(SEL_NODE_INSTALL)
-	echo usr/share/java/$(SELENIUM_SERVER_NODE_BIN) usr/share/java/selenium-node.jar > $(SEL_NODE_LINKS)
+	echo usr/share/java/$(SELENIUM_SERVER_NODE_JAR) usr/share/java/selenium-node.jar > $(SEL_NODE_LINKS)
 	echo usr/bin/$(CHROMEDRIVER_BIN) usr/bin/chromedriver >> $(SEL_NODE_LINKS)
 	echo usr/bin/$(GECKODRIVER_BIN) usr/bin/geckodriver >> $(SEL_NODE_LINKS)
 
 node-lp-upload:
 	dput $(PPA_TARGET) $(PPA_SEL_NODE)$(LP_UBUNTU_VER)$(PPA_SOURCE_CHANGES)
 
-node-headless: get_node_headless_source node-headless-deb-files
-	cd $(PKG_SEL_NODE_HEADLESS) && $(DPKG)
-
-node-headless-lp: get_node_headless_source node-headless-deb-files tar_node_headless
-	cd $(PKG_SEL_NODE_HEADLESS) && $(DEBUILD)
-
 node-headless-deb-files:
-	echo src/$(SELENIUM_SERVER_NODE_BIN) usr/share/java > $(SEL_NODE_HEADLESS_INSTALL)
+	echo src/$(SELENIUM_SERVER_NODE_JAR) usr/share/java > $(SEL_NODE_HEADLESS_INSTALL)
 	echo src/$(CHROMEDRIVER_BIN) usr/bin >> $(SEL_NODE_HEADLESS_INSTALL)
 	echo src/$(GECKODRIVER_BIN) usr/bin >> $(SEL_NODE_HEADLESS_INSTALL)
 	echo selenium-nodeConfig.json etc/default >> $(SEL_NODE_HEADLESS_INSTALL)
-	echo usr/share/java/$(SELENIUM_SERVER_NODE_BIN) usr/share/java/selenium-node.jar > $(SEL_NODE_HEADLESS_LINKS)
+	echo usr/share/java/$(SELENIUM_SERVER_NODE_JAR) usr/share/java/selenium-node.jar > $(SEL_NODE_HEADLESS_LINKS)
 	echo usr/bin/$(CHROMEDRIVER_BIN) usr/bin/chromedriver >> $(SEL_NODE_HEADLESS_LINKS)
 	echo usr/bin/$(GECKODRIVER_BIN) usr/bin/geckodriver >> $(SEL_NODE_HEADLESS_LINKS)
 
@@ -140,7 +125,7 @@ node-headless-lp-upload:
 xvfb:
 	cd $(PKG_SEL_XVFB) && $(DPKG)
 
-xvfb-lp: tar_xvfb
+xvfb-lp: tar-xvfb
 	cd $(PKG_SEL_XVFB) && $(DEBUILD)
 
 xvfb-lp-upload:
@@ -152,105 +137,86 @@ sign:
 	dpkg-sig -s builder $(PKG_SEL_NODE_HEADLESS)_*.deb
 	dpkg-sig -s builder $(PKG_SEL_XVFB)_*.deb
 
-repo:
-	reprepro -Vb $(REPO) includedeb $(DISTRO) $(PKG_SEL_HUB)_*.deb
-	reprepro -Vb $(REPO) includedeb $(DISTRO) $(PKG_SEL_NODE)_*.deb
-	reprepro -Vb $(REPO) includedeb $(DISTRO) $(PKG_SEL_NODE_HEADLESS)_*.deb
-	reprepro -Vb $(REPO) includedeb $(DISTRO) $(PKG_SEL_XVFB)_*.deb
-	apt-ftparchive release $(REPO) ; \
-	for f in `find $(REPO) -name Release` ; \
-	do \
-		d=`dirname $$f` ; \
-		rm -f $$d/InRelease ; \
-		gpg --clearsign -o $$d/InRelease $$d/Release ; \
-		rm -f $$d/Release.gpg ; \
-		gpg -abs -o $$d/Release.gpg $$d/Release ; \
-	done
-
 # get needed source material to include in packages; stored elsewhere outside of Git.
-get_hub_source:
+get-hub-source: chk
 	@if [ -d $(PKG_SEL_HUB_SRC) ]; \
 	then \
 		echo $(ALERT); \
-		echo "\nWARNING: '$(PKG_SEL_HUB_SRC)' exists and may contain stale data. Consider 'make clean'; continuing\n"; \
+		echo "\nWARNING: [$(PKG_SEL_HUB_SRC)] exists and may contain stale data. \
+Consider 'make clean'\n"; \
 		echo $(ALERT); \
 	else \
-		mkdir ./$(PKG_SEL_HUB_SRC); \
-		cd ./$(PKG_SEL_HUB_SRC); \
-		wget -t 5 $(SELENIUM_SERVER_SRC) -O $(SELENIUM_SERVER_HUB_BIN); \
-		chmod 644 $(SELENIUM_SERVER_HUB_BIN); \
+		mkdir $(PKG_SEL_HUB_SRC); \
+		cd $(PKG_SEL_HUB_SRC); \
+		cp $(TMPDIR)/$(SELENIUM_NAME) $(SELENIUM_SERVER_HUB_JAR); \
+		chmod 644 $(SELENIUM_SERVER_HUB_JAR); \
 	fi
 
-get_node_source:
+get-node-source: chk
 	@if [ -d $(PKG_SEL_NODE_SRC) ]; \
 	then \
 		echo $(ALERT); \
-		echo "\nWARNING: '$(PKG_SEL_NODE_SRC)' exists and may contain stale data. Consider 'make clean'; continuing\n"; \
+		echo "\nWARNING: [$(PKG_SEL_NODE_SRC)] exists and may contain stale data. \
+Consider 'make clean'\n"; \
 		echo $(ALERT); \
 	else \
-		mkdir ./$(PKG_SEL_NODE_SRC); \
-		cd ./$(PKG_SEL_NODE_SRC); \
-		wget  -t 5 $(CHROMEDRIVER_SRC) -O $(CHROMEDRIVER_ARCHIVE); \
-		unzip $(CHROMEDRIVER_ARCHIVE); \
-		mv $(CHROMEDRIVER_NAME) $(CHROMEDRIVER_BIN); \
-		wget -t 5 $(GECKODRIVER_SRC) -O $(GECKODRIVER_ARCHIVE); \
-		tar xvfpz $(GECKODRIVER_ARCHIVE); \
-		mv $(GECKODRIVER_NAME) $(GECKODRIVER_BIN); \
-		wget -t 5 $(SELENIUM_SERVER_SRC) -O $(SELENIUM_SERVER_NODE_BIN); \
-		chmod 644 $(SELENIUM_SERVER_NODE_BIN); \
+		mkdir $(PKG_SEL_NODE_SRC); \
+		cd $(PKG_SEL_NODE_SRC); \
+		cp $(TMPDIR)/$(SELENIUM_NAME) $(SELENIUM_SERVER_NODE_JAR); \
+		cp $(TMPDIR)/$(CHROMEDRIVER_BIN) $(CHROMEDRIVER_BIN); \
+		cp $(TMPDIR)/$(GECKODRIVER_BIN) $(GECKODRIVER_BIN); \
+		chmod 644 $(SELENIUM_SERVER_NODE_JAR); \
 		chmod 755 $(CHROMEDRIVER_BIN) $(GECKODRIVER_BIN); \
 	fi
 
-get_node_headless_source:
+get-node-headless_source: chk
 	@if [ -d $(PKG_SEL_NODE_HEADLESS_SRC) ]; \
 	then \
 		echo $(ALERT); \
-		echo "\nWARNING: '$(PKG_SEL_NODE_HEADLESS_SRC)' exists and may contain stale data. Consider 'make clean'; continuing\n"; \
+		echo "\nWARNING: [$(PKG_SEL_NODE_HEADLESS_SRC)] exists and may contain \
+stale data. Consider 'make clean'\n"; \
 		echo $(ALERT); \
 	else \
-		mkdir ./$(PKG_SEL_NODE_HEADLESS_SRC); \
-		cd ./$(PKG_SEL_NODE_HEADLESS_SRC); \
-		wget  -t 5 $(CHROMEDRIVER_SRC) -O $(CHROMEDRIVER_ARCHIVE); \
-		unzip $(CHROMEDRIVER_ARCHIVE); \
-		mv $(CHROMEDRIVER_NAME) $(CHROMEDRIVER_BIN); \
-		wget -t 5 $(GECKODRIVER_SRC) -O $(GECKODRIVER_ARCHIVE); \
-		tar xvfpz $(GECKODRIVER_ARCHIVE); \
-		mv $(GECKODRIVER_NAME) $(GECKODRIVER_BIN); \
-		wget -t 5 $(SELENIUM_SERVER_SRC) -O $(SELENIUM_SERVER_NODE_BIN); \
-		chmod 644 $(SELENIUM_SERVER_NODE_BIN); \
+		mkdir $(PKG_SEL_NODE_HEADLESS_SRC); \
+		cd $(PKG_SEL_NODE_HEADLESS_SRC); \
+		cp $(TMPDIR)/$(SELENIUM_NAME) $(SELENIUM_SERVER_NODE_JAR); \
+		cp $(TMPDIR)/$(CHROMEDRIVER_BIN) $(CHROMEDRIVER_BIN); \
+		cp $(TMPDIR)/$(GECKODRIVER_BIN) $(GECKODRIVER_BIN); \
+		chmod 644 $(SELENIUM_SERVER_NODE_JAR); \
 		chmod 755 $(CHROMEDRIVER_BIN) $(GECKODRIVER_BIN); \
 	fi
 
-tar_hub:
-	tar cvfzp $(PPA_SEL_HUB)$(PPA_ORIG_ARCHIVE) $(PKG_SEL_HUB)
+hub: get-hub-source hub-deb-files
+	cd $(PKG_SEL_HUB) && $(DPKG)
 
-tar_node:
-	tar cvfzp $(PPA_SEL_NODE)$(PPA_ORIG_ARCHIVE) $(PKG_SEL_NODE)
+hub-lp: get-hub-source hub-deb-files tar-hub
+	cd $(PKG_SEL_HUB) && $(DEBUILD)
+	
+node: get-node-source node-deb-files
+	cd $(PKG_SEL_NODE) && $(DPKG)
 
-tar_node_headless:
-	tar cvfzp $(PPA_SEL_NODE_HEADLESS)$(PPA_ORIG_ARCHIVE) $(PKG_SEL_NODE_HEADLESS)
+node-lp: get-node-source node-deb-files tar-node
+	cd $(PKG_SEL_NODE) && $(DEBUILD)
+	
+node-headless: get-node-headless_source node-headless-deb-files
+	cd $(PKG_SEL_NODE_HEADLESS) && $(DPKG)
 
-tar_xvfb:
-	tar cvfzp $(PPA_SEL_XVFB)$(PPA_ORIG_ARCHIVE) $(PKG_SEL_XVFB)
+node-headless-lp: get-node-headless_source node-headless-deb-files tar-node-headless
+	cd $(PKG_SEL_NODE_HEADLESS) && $(DEBUILD)	
+	
+link:
+	cd .. && ln -s $(LINDIR)/$(PKG_SEL_HUB)_*.deb .
+	cd .. && ln -s $(LINDIR)/$(PKG_SEL_NODE)_*.deb .
+	cd .. && ln -s $(LINDIR)/$(PKG_SEL_NODE_HEADLESS)_*.deb .
+	cd .. && ln -s $(LINDIR)/$(PKG_SEL_XVFB)_*.deb	.
 
-clean:
-	$(RM) -f *.deb *.changes *.build *.dsc *.xz
-	$(RM) -rf build-area
-	$(RM) -f *$(PPA_ORIG_ARCHIVE)
-	$(RM) -f *$(PPA_UPLOAD_LOG)
-	$(RM) -f $(SEL_HUB_INSTALL)
-	$(RM) -f $(SEL_HUB_LINKS)
-	$(RM) -f $(SEL_NODE_INSTALL)
-	$(RM) -f $(SEL_NODE_LINKS)
-	$(RM) -f $(SEL_NODE_HEADLESS_INSTALL)
-	$(RM) -f $(SEL_NODE_HEADLESS_LINKS)
-	cd $(PKG_SEL_HUB) && make -f debian/rules clean
-	cd $(PKG_SEL_NODE) && make -f debian/rules clean
-	cd $(PKG_SEL_NODE_HEADLESS) && make -f debian/rules clean
-	cd $(PKG_SEL_XVFB) && make -f debian/rules clean
+local: chk clean hub node node-headless xvfb
 
-allclean: clean
-	$(RM) -rf $(PKG_SEL_HUB_SRC)
-	$(RM) -rf $(PKG_SEL_NODE_SRC)
-	$(RM) -rf $(PKG_SEL_NODE_HEADLESS_SRC)
+all-local: local sign link
+	
+remote: chk clean hub-lp node-lp node-headless-lp xvfb-lp
+
+remote-upload: hub-lp-upload node-lp-upload node-headless-lp-upload xvfb-lp-upload
+
+all-remote: remote remote-upload
 

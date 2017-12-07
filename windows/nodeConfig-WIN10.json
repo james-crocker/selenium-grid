@@ -3,26 +3,26 @@
   [
     {
       "browserName": "chrome",
-      "version": "58.0",
+      "version": "62.0",
       "maxInstances": 1,
       "platform": "WIN10",
-      "webdriver.chrome.driver": "C:\\selenium\\chromedriver.exe",
+      "webdriver.chrome.driver": "C:\\selenium\\{CHROMEDRIVER}",
       "seleniumProtocol": "WebDriver"
     },
     {
       "browserName": "firefox",
       "maxInstances": 1,
-      "version": "53.0",
+      "version": "57.0",
       "platform": "WIN10",
-      "webdriver.gecko.driver": "C:\\selenium\\geckodriver.exe",
+      "webdriver.gecko.driver": "C:\\selenium\\{GECKODRIVER}",
       "seleniumProtocol": "WebDriver"
     },
     {
       "browserName": "MicrosoftEdge",
-      "version": "38.0",
+      "version": "40.0",
       "maxInstances": 1,
       "platform": "WIN10",
-      "webdriver.edge.driver": "C:\\selenium\\MicrosoftWebDriver.exe",
+      "webdriver.edge.driver": "C:\\selenium\\{EDGEDRIVER}",
       "seleniumProtocol": "WebDriver"
     },
     {
@@ -30,7 +30,7 @@
       "version": "11.0",
       "maxInstances": 1,
       "platform": "WIN10",
-      "webdriver.ie.driver": "C:\\selenium\\IEDriverServer.exe",
+      "webdriver.ie.driver": "C:\\selenium\\{IEDRIVER}",
       "seleniumProtocol": "WebDriver"
     }
   ],

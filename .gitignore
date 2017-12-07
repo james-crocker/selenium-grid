@@ -1,10 +1,16 @@
-ubuntu/tmpsrc/
 ubuntu/selenium-hub/version
 ubuntu/selenium-hub/selenium-hub/DEBIAN/control
 ubuntu/selenium-hub/selenium-hub/usr/
+ubuntu/selenium-hub/selenium-hub/src/
 ubuntu/selenium-node/version
 ubuntu/selenium-node/selenium-node/DEBIAN/control
 ubuntu/selenium-node/selenium-node/usr/
+ubuntu/selenium-node/selenium-node/src/
 ubuntu/selenium-node-headless/version
 ubuntu/selenium-node-headless/selenium-node-headless/DEBIAN/control
 ubuntu/selenium-node-headless/selenium-node-headless/usr/
+ubuntu/selenium-node-headless/selenium-node-headless/src/
+ubuntu/selenium-xvfb/version
+ubuntu/selenium-xvfb/selenium-xvfb/DEBIAN/control
+ubuntu/selenium-xvfb/selenium-xvfb/usr/
+ubuntu/selenium-xvfb/selenium-xvfb/src/
